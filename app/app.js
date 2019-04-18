@@ -1,13 +1,13 @@
-let example = angular.module("example", ['ngStorage', 'ngRoute']);
-example.controller("ExampleController", function ($scope, $localStorage) {
+let app = angular.module("app", ['ngStorage', 'ngRoute']);
+app.controller("AppController", function ($scope, $localStorage) {
     if ($localStorage.forms) {
         $scope.datas = JSON.parse($localStorage.forms).forms;
     }
 });
 
+app.controller("ModalController", function ($scope, $localStorage) {
 
-example.controller("ModalController", function ($scope, $localStorage) {
-
+    //This value is default value.
     $scope.originalForm = {
         formName: 'Form1',
         description: 'Uye formu',
@@ -17,8 +17,10 @@ example.controller("ModalController", function ($scope, $localStorage) {
         age: 25
     };
 
+    //Giving default value to form
     $scope.form = angular.copy($scope.originalForm);
 
+    //Submitting the form to local storage
     $scope.submitForm = function () {
         let object = {
             forms: []
@@ -28,25 +30,26 @@ example.controller("ModalController", function ($scope, $localStorage) {
         $scope.form.date = tmpDate.getFullYear() + "-" + tmpDate.getMonth() + "-" + tmpDate.getDate();
 
         if ($localStorage.forms) {
-            let a = JSON.parse($localStorage.forms)
-            console.log(a.forms);
-            a.forms.push($scope.form);
-            $localStorage.forms = JSON.stringify(a);
+            let earlyObject = JSON.parse($localStorage.forms)
+            console.log(earlyObject.forms);
+            earlyObject.forms.push($scope.form);
+            $localStorage.forms = JSON.stringify(earlyObject);
         } else {
             object.forms.push($scope.form);
             $localStorage.forms = JSON.stringify(object)
         }
         alert("Başarılı Kayıt");
     };
-    //6. create resetForm() function. This will be called on Reset button click.  
+
+    //reseting all the local storage and form
     $scope.resetForm = function () {
-        //$scope.form = angular.copy($scope.originalForm);
         $localStorage.$reset();
     };
 
 });
 
-example.config(function ($routeProvider) {
+//Making the route configuration
+app.config(function ($routeProvider) {
 
     $routeProvider.when('/forms/:formName', {
         templateUrl: 'forms.html',
@@ -57,7 +60,8 @@ example.config(function ($routeProvider) {
 
 });
 
-example.controller("FormController", function ($scope, $location, $localStorage, $routeParams) {
+//Adding controller to new page(forms.html) of application
+app.controller("FormController", function ($scope, $location, $localStorage, $routeParams) {
     $scope.originalForm = {
         formName: 'Form1',
         description: 'Uye formu',
