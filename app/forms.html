@@ -1,0 +1,24 @@
+<!--<form ng-submit="submitForm()"> <label for="formName" >Form Name </label><br /> <input type="text" id="formName" ng-model="form.formName" /> <br /> <label for="description">Description</label><br /> <input type="text" id="description" ng-model="form.description" /> <br /> <label for="name" >Name</label> <br /> <input type="text" id="name" ng-model="form.name" /> <br /> <br /> <label for="surname" >Surname</label> <br /> <input type="text" id="surname" ng-model="form.surname" /> <br /> <br /> <label for="age" >Age</label> <br /> <input type="number" id="age" ng-model="form.age" /> <br /> <br /> <input type="submit" value="Submit" /> <input type="reset" ng-click="resetForm()" value="Reset" /> </form>'
+-->
+<form name="Formm" ng-submit="submitForm()">
+        <div class="form-group">
+            <label for="formName" >Form</label>
+                <input type="text" class="form-control" name="formName" id="formName"  ng-model="form.formName" />
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" ng-model="form.description" />
+        </div>
+        <div class="form-group">
+            <label for="name" >Name</label>
+            <input type="text" class="form-control" name="name" id="name"  ng-model="form.name" /> 
+        </div>
+        <div class="form-group">
+            <label for="surname" >Surname</label>
+            <input type="text" class="form-control" name="surname" id="surname"  ng-model="form.surname" /> 
+        </div>
+        <div class="form-group">
+            <label for="age" >Age</label>
+            <input type="number" class="form-control" id="age" ng-model="form.age" />
+        </div>
+</form>
